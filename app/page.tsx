@@ -3,7 +3,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { InvoiceData } from '@/types/invoice';
-import { SAMPLE_DPIA_INVOICE, BLANK_INVOICE_TEMPLATE } from '@/lib/sampleData';
+import {
+  SAMPLE_DPIA_INVOICE,
+  BLANK_INVOICE_TEMPLATE,
+  DEFAULT_DPIA_LOGO,
+  DEFAULT_DPIA_SIGNATURE,
+  isOldOrOutdatedLogo,
+  isOldOrOutdatedSignature,
+} from '@/lib/sampleData';
 import { InvoicePaper } from '@/components/InvoicePaper';
 import { WhatsAppModal } from '@/components/WhatsAppModal';
 import { EmailModal } from '@/components/EmailModal';
@@ -81,40 +88,65 @@ export default function InvoiceAppPage() {
         );
   const grandTotal = taxableTotal + totalTax;
 
-  // Restore saved draft on client mount if available
+  // Restore saved draft on client mount if available, ensuring official DNA logo & sign
   useEffect(() => {
     const timer = setTimeout(() => {
       try {
         const savedDraft = localStorage.getItem(CURRENT_DRAFT_KEY);
-        const savedLogo = localStorage.getItem('saved_company_logo_v1');
-        const savedSign = localStorage.getItem('saved_user_signature_v1');
+        let savedLogo = localStorage.getItem('saved_company_logo_v1');
+        let savedSign = localStorage.getItem('saved_user_signature_v1');
+
+        // Automatically replace old red circular placeholder with authentic DNA logo
+        if (isOldOrOutdatedLogo(savedLogo || undefined)) {
+          savedLogo = DEFAULT_DPIA_LOGO;
+          try {
+            localStorage.setItem('saved_company_logo_v1', DEFAULT_DPIA_LOGO);
+          } catch {
+            // ignore
+          }
+        }
+
+        // Automatically replace old signature wave with authentic rubber stamp + blue cursive
+        if (isOldOrOutdatedSignature(savedSign || undefined)) {
+          savedSign = DEFAULT_DPIA_SIGNATURE;
+          try {
+            localStorage.setItem('saved_user_signature_v1', DEFAULT_DPIA_SIGNATURE);
+          } catch {
+            // ignore
+          }
+        }
 
         if (savedDraft) {
           const parsed = JSON.parse(savedDraft);
           if (parsed && parsed.items && parsed.seller) {
-            if (!parsed.seller.logoUrl && savedLogo) {
-              parsed.seller.logoUrl = savedLogo;
+            // Check if draft contains old placeholder logo
+            if (!parsed.seller.logoUrl || isOldOrOutdatedLogo(parsed.seller.logoUrl)) {
+              parsed.seller.logoUrl = savedLogo || DEFAULT_DPIA_LOGO;
             }
-            if (!parsed.signatureUrl && savedSign) {
-              parsed.signatureUrl = savedSign;
-              parsed.seller.signatureUrl = savedSign;
+            // Check if draft contains old placeholder signature
+            if (!parsed.signatureUrl || isOldOrOutdatedSignature(parsed.signatureUrl)) {
+              parsed.signatureUrl = savedSign || DEFAULT_DPIA_SIGNATURE;
+              parsed.seller.signatureUrl = savedSign || DEFAULT_DPIA_SIGNATURE;
             }
             setInvoice(parsed);
+            try {
+              localStorage.setItem(CURRENT_DRAFT_KEY, JSON.stringify(parsed));
+            } catch {
+              // ignore
+            }
             return;
           }
         }
 
-        if (savedLogo || savedSign) {
-          setInvoice((prev) => ({
-            ...prev,
-            signatureUrl: savedSign || prev.signatureUrl,
-            seller: {
-              ...prev.seller,
-              logoUrl: savedLogo || prev.seller.logoUrl,
-              signatureUrl: savedSign || prev.seller.signatureUrl,
-            },
-          }));
-        }
+        setInvoice((prev) => ({
+          ...prev,
+          signatureUrl: isOldOrOutdatedSignature(prev.signatureUrl) ? DEFAULT_DPIA_SIGNATURE : prev.signatureUrl,
+          seller: {
+            ...prev.seller,
+            logoUrl: isOldOrOutdatedLogo(prev.seller.logoUrl) ? DEFAULT_DPIA_LOGO : prev.seller.logoUrl,
+            signatureUrl: isOldOrOutdatedSignature(prev.seller.signatureUrl) ? DEFAULT_DPIA_SIGNATURE : prev.seller.signatureUrl,
+          },
+        }));
       } catch {
         // ignore
       }

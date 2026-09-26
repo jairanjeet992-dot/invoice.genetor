@@ -133,11 +133,11 @@ export const InvoicePaper: React.FC<InvoicePaperProps> = ({ invoice, id = 'invoi
             >
               {/* Company Logo or Badge */}
               <div
-                className="flex-shrink-0 w-12 h-12 border border-[#cbd5e1] rounded-md flex items-center justify-center bg-white overflow-hidden text-center text-[10px] font-bold"
+                className="flex-shrink-0 border border-[#cbd5e1] rounded-md flex items-center justify-center bg-white overflow-hidden text-center text-[10px] font-bold shadow-2xs"
                 style={{
-                  width: '52px',
-                  height: '52px',
-                  minWidth: '52px',
+                  width: '60px',
+                  height: '60px',
+                  minWidth: '60px',
                   border: '1px solid #cbd5e1',
                   borderRadius: '6px',
                   display: 'flex',

@@ -38,39 +38,61 @@ export const INDIAN_STATES: { code: string; name: string }[] = [
 export const DEFAULT_DPIA_LOGO =
   'data:image/svg+xml;base64,' +
   Buffer.from(
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
-  <rect width='200' height='200' fill='#8f9095' rx='12'/>
-  
-  <!-- Magnifying glass handle -->
-  <g transform='translate(72, 118) rotate(45)'>
-    <rect x='-8' y='0' width='16' height='46' rx='3' fill='#0f172a'/>
-    <rect x='-9' y='-3' width='18' height='6' rx='1' fill='#cbd5e1'/>
-  </g>
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220' width='220' height='220'>
+  <!-- Background matching exact grey tone -->
+  <rect width='220' height='220' fill='#8c8a91' rx='10'/>
 
-  <!-- Magnifying glass rim & lens -->
-  <circle cx='124' cy='74' r='52' fill='#0f172a'/>
-  <circle cx='124' cy='74' r='45' fill='#334155'/>
-  <circle cx='124' cy='74' r='43' fill='#1e293b'/>
-  
-  <!-- Lens specular reflection -->
-  <path d='M88 74 A 38 38 0 0 1 124 36' stroke='rgba(255,255,255,0.3)' stroke-width='3.5' fill='none' stroke-linecap='round'/>
+  <!-- Magnifying glass group -->
+  <g id='magnifying_glass'>
+    <!-- Handle at bottom-left pointing towards lens -->
+    <path d='M2 138 L16 132 L78 96 L72 85 L10 122 Z' fill='#18181b'/>
+    <path d='M0 135 L6 131 L74 92 L70 85 L3 126 Z' fill='#27272a'/>
+    <!-- Collar ring between handle and rim -->
+    <ellipse cx='74' cy='90' rx='4' ry='8' transform='rotate(-30 74 90)' fill='#52525b'/>
 
-  <!-- Interlocking Red d and White P -->
-  <g id='monogram'>
-    <!-- Red lowercase d -->
-    <path d='M120 38 L132 38 L132 86 L121 86 L121 80 C117 86 109 90 101 90 C87 90 77 79 77 65 C77 52 87 41 101 41 C109 41 117 45 120 51 Z M105 52 C95 52 89 58 89 65 C89 72 95 78 105 78 C115 78 121 72 121 65 C121 58 115 52 105 52 Z' fill='#dc2626'/>
+    <!-- Outer thick black circular rim of magnifying glass -->
+    <circle cx='132' cy='68' r='56' fill='#1c1917' stroke='#0c0a09' stroke-width='2'/>
     
-    <!-- White uppercase P overlapping lower half -->
-    <path d='M104 62 L132 62 C146 62 155 70 155 83 C155 96 146 104 132 104 L117 104 L117 124 L104 124 Z M117 73 L117 93 L131 93 C139 93 144 89 144 83 C144 77 139 73 131 73 Z' fill='#ffffff' filter='drop-shadow(0 2px 3px rgba(0,0,0,0.6))'/>
+    <!-- Inner metallic bevel ring -->
+    <circle cx='132' cy='68' r='45' fill='#57534e'/>
+    <circle cx='132' cy='68' r='43' fill='#44403c'/>
+    
+    <!-- Lens glass interior -->
+    <circle cx='132' cy='68' r='41' fill='#78716c'/>
+
+    <!-- Lens glass reflection sweep -->
+    <path d='M98 62 A 36 36 0 0 1 144 32' stroke='rgba(255,255,255,0.45)' stroke-width='3.5' stroke-linecap='round' fill='none'/>
+
+    <!-- Monogram: Red d and White P -->
+    <!-- Red lowercase d -->
+    <g id='monogram-d'>
+      <circle cx='118' cy='72' r='16' fill='none' stroke='#e11d48' stroke-width='9'/>
+      <rect x='129' y='38' width='9.5' height='50' rx='2' fill='#e11d48'/>
+    </g>
+
+    <!-- White uppercase P overlapping right and front -->
+    <g id='monogram-p' filter='drop-shadow(1px 2px 2px rgba(0,0,0,0.6))'>
+      <rect x='112' y='65' width='9.5' height='40' rx='2' fill='#ffffff'/>
+      <path d='M118 65 L138 65 C148 65 154 72 154 81 C154 90 148 97 138 97 L118 97 Z' fill='#ffffff'/>
+      <path d='M121.5 73.5 L136 73.5 C141 73.5 144.5 76.5 144.5 81 C144.5 85.5 141 88.5 136 88.5 L121.5 88.5 Z' fill='#78716c'/>
+    </g>
   </g>
 
-  <!-- Typography: DNA Professional Investigation Agency -->
-  <text x='100' y='160' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='16.5' letter-spacing='-0.2'>
-    <tspan fill='#dc2626'>D</tspan><tspan fill='#0f172a'>NA </tspan><tspan fill='#ffffff' stroke='#0f172a' stroke-width='0.7'>P</tspan><tspan fill='#0f172a'>rofessional</tspan>
-  </text>
-  <text x='100' y='180' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='bold' font-size='14' fill='#0f172a'>
-    Investigation Agency
-  </text>
+  <!-- Typography below magnifying glass -->
+  <g font-family='Arial, Helvetica, sans-serif' text-anchor='middle'>
+    <!-- Line 1: DNA Professional -->
+    <text x='110' y='178' font-size='17' font-weight='900' letter-spacing='-0.3'>
+      <tspan fill='#e11d48'>D</tspan>
+      <tspan fill='#18181b'>NA </tspan>
+      <tspan fill='#ffffff' stroke='#18181b' stroke-width='0.8'>P</tspan>
+      <tspan fill='#18181b'>rofessional</tspan>
+    </text>
+
+    <!-- Line 2: Investigation Agency -->
+    <text x='110' y='199' font-size='14.5' font-weight='800' fill='#18181b' letter-spacing='-0.2'>
+      Investigation Agency
+    </text>
+  </g>
 </svg>`
   ).toString('base64');
 
@@ -289,4 +311,46 @@ export const DEFAULT_SAVED_BUYERS = [
     whatsappPhone: '+919840012345',
   },
 ];
+
+export function isOldOrOutdatedLogo(logoUrl?: string): boolean {
+  if (!logoUrl) return true;
+  if (typeof logoUrl !== 'string') return true;
+  if (logoUrl.includes('radialGradient') || logoUrl.includes('be123c') || logoUrl.includes('silver') || logoUrl.includes('ef4444')) {
+    return true;
+  }
+  if (logoUrl.startsWith('data:image/svg+xml;base64,')) {
+    try {
+      const b64 = logoUrl.replace('data:image/svg+xml;base64,', '');
+      const decoded = typeof window !== 'undefined'
+        ? window.atob(b64)
+        : Buffer.from(b64, 'base64').toString('utf-8');
+      if (decoded.includes('radialGradient') || decoded.includes("viewBox='0 0 100 100'") || decoded.includes('viewBox="0 0 100 100"') || !decoded.includes('magnifying_glass')) {
+        return true;
+      }
+    } catch {
+      // keep custom upload if decoding fails
+    }
+  }
+  return false;
+}
+
+export function isOldOrOutdatedSignature(signUrl?: string): boolean {
+  if (!signUrl) return true;
+  if (typeof signUrl !== 'string') return true;
+  if (signUrl.startsWith('data:image/svg+xml;base64,')) {
+    try {
+      const b64 = signUrl.replace('data:image/svg+xml;base64,', '');
+      const decoded = typeof window !== 'undefined'
+        ? window.atob(b64)
+        : Buffer.from(b64, 'base64').toString('utf-8');
+      if (decoded.includes("viewBox='0 0 260 90'") || decoded.includes('viewBox="0 0 260 90"') || !decoded.includes('stampTopArc')) {
+        return true;
+      }
+    } catch {
+      // keep custom upload if decoding fails
+    }
+  }
+  return false;
+}
+
 
