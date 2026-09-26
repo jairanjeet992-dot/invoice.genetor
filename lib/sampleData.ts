@@ -38,38 +38,92 @@ export const INDIAN_STATES: { code: string; name: string }[] = [
 export const DEFAULT_DPIA_LOGO =
   'data:image/svg+xml;base64,' +
   Buffer.from(
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'>
-  <defs>
-    <radialGradient id='grad' cx='40%' cy='35%' r='60%'>
-      <stop offset='0%' stop-color='#ef4444'/>
-      <stop offset='60%' stop-color='#991b1b'/>
-      <stop offset='100%' stop-color='#1e293b'/>
-    </radialGradient>
-    <linearGradient id='silver' x1='0%' y1='0%' x2='100%' y2='100%'>
-      <stop offset='0%' stop-color='#f8fafc'/>
-      <stop offset='50%' stop-color='#cbd5e1'/>
-      <stop offset='100%' stop-color='#64748b'/>
-    </linearGradient>
-  </defs>
-  <circle cx='50' cy='50' r='48' fill='url(#grad)' stroke='#0f172a' stroke-width='3'/>
-  <circle cx='50' cy='50' r='42' fill='none' stroke='url(#silver)' stroke-width='1.5' stroke-dasharray='2,2'/>
-  <circle cx='50' cy='50' r='38' fill='none' stroke='#f87171' stroke-width='1'/>
-  <path d='M38 25 L54 25 C64 25 70 31 70 41 C70 51 63 57 53 57 L46 57 L46 75 L38 75 Z M46 33 L46 49 L53 49 C59 49 62 46 62 41 C62 36 58 33 53 33 Z' fill='url(#silver)' filter='drop-shadow(0px 2px 3px rgba(0,0,0,0.5))'/>
-  <circle cx='38' cy='25' r='3' fill='#ffffff'/>
-  <circle cx='46' cy='75' r='3' fill='#ffffff'/>
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <rect width='200' height='200' fill='#8f9095' rx='12'/>
+  
+  <!-- Magnifying glass handle -->
+  <g transform='translate(72, 118) rotate(45)'>
+    <rect x='-8' y='0' width='16' height='46' rx='3' fill='#0f172a'/>
+    <rect x='-9' y='-3' width='18' height='6' rx='1' fill='#cbd5e1'/>
+  </g>
+
+  <!-- Magnifying glass rim & lens -->
+  <circle cx='124' cy='74' r='52' fill='#0f172a'/>
+  <circle cx='124' cy='74' r='45' fill='#334155'/>
+  <circle cx='124' cy='74' r='43' fill='#1e293b'/>
+  
+  <!-- Lens specular reflection -->
+  <path d='M88 74 A 38 38 0 0 1 124 36' stroke='rgba(255,255,255,0.3)' stroke-width='3.5' fill='none' stroke-linecap='round'/>
+
+  <!-- Interlocking Red d and White P -->
+  <g id='monogram'>
+    <!-- Red lowercase d -->
+    <path d='M120 38 L132 38 L132 86 L121 86 L121 80 C117 86 109 90 101 90 C87 90 77 79 77 65 C77 52 87 41 101 41 C109 41 117 45 120 51 Z M105 52 C95 52 89 58 89 65 C89 72 95 78 105 78 C115 78 121 72 121 65 C121 58 115 52 105 52 Z' fill='#dc2626'/>
+    
+    <!-- White uppercase P overlapping lower half -->
+    <path d='M104 62 L132 62 C146 62 155 70 155 83 C155 96 146 104 132 104 L117 104 L117 124 L104 124 Z M117 73 L117 93 L131 93 C139 93 144 89 144 83 C144 77 139 73 131 73 Z' fill='#ffffff' filter='drop-shadow(0 2px 3px rgba(0,0,0,0.6))'/>
+  </g>
+
+  <!-- Typography: DNA Professional Investigation Agency -->
+  <text x='100' y='160' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='16.5' letter-spacing='-0.2'>
+    <tspan fill='#dc2626'>D</tspan><tspan fill='#0f172a'>NA </tspan><tspan fill='#ffffff' stroke='#0f172a' stroke-width='0.7'>P</tspan><tspan fill='#0f172a'>rofessional</tspan>
+  </text>
+  <text x='100' y='180' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='bold' font-size='14' fill='#0f172a'>
+    Investigation Agency
+  </text>
 </svg>`
   ).toString('base64');
 
 export const DEFAULT_DPIA_SIGNATURE =
   'data:image/svg+xml;base64,' +
   Buffer.from(
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 90' width='260' height='90'>
-  <rect x='5' y='5' width='250' height='80' rx='6' fill='none' stroke='#64748b' stroke-width='1.5' opacity='0.7'/>
-  <text x='130' y='22' font-family='Arial, sans-serif' font-size='9.5' font-weight='bold' fill='#334155' text-anchor='middle' letter-spacing='0.3'>For DNA Professional Investigation Agency</text>
-  <path d='M45 56 Q 60 26, 75 48 T 100 42 Q 115 20, 125 54 Q 140 64, 155 38 Q 170 24, 180 48 Q 195 62, 220 40' fill='none' stroke='#1d4ed8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/>
-  <path d='M80 50 Q 115 48, 155 46 T 200 44' fill='none' stroke='#1e40af' stroke-width='1.6' stroke-linecap='round'/>
-  <path d='M55 66 Q 125 60, 215 63' fill='none' stroke='#2563eb' stroke-width='1.5' stroke-linecap='round' opacity='0.85'/>
-  <text x='130' y='78' font-family='Arial, sans-serif' font-size='8.5' font-weight='bold' fill='#475569' text-anchor='middle'>Partner / Authorised Signatory</text>
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 115' width='280' height='115'>
+  <!-- For:DNA Professional Investigation Agency Header -->
+  <text x='6' y='16' font-family='Georgia, Times, serif' font-size='11' font-weight='bold' fill='#27272a'>
+    For:DNA Professional Investigation Agency
+  </text>
+
+  <!-- Rubber Stamp (Right side circular seal) -->
+  <g transform='translate(200, 64) rotate(-6)'>
+    <!-- Outer circle with rubber ink stamp texture -->
+    <circle cx='0' cy='0' r='42' fill='none' stroke='#1e1e38' stroke-width='2' opacity='0.85'/>
+    <!-- Inner circle -->
+    <circle cx='0' cy='0' r='30' fill='none' stroke='#1e1e38' stroke-width='1.4' opacity='0.85'/>
+    
+    <!-- Circular text along paths -->
+    <path id='stampTopArc' d='M -26,-2 A 26,26 0 0,1 26,-2' fill='none'/>
+    <text font-family='Arial, sans-serif' font-size='7.5' font-weight='bold' fill='#1e1e38' letter-spacing='0.6' opacity='0.9'>
+      <textPath href='#stampTopArc' startOffset='50%' text-anchor='middle'>
+        DNA Professional
+      </textPath>
+    </text>
+
+    <path id='stampBottomArc' d='M 26,2 A 26,26 0 0,1 -26,2' fill='none'/>
+    <text font-family='Arial, sans-serif' font-size='6.8' font-weight='bold' fill='#1e1e38' letter-spacing='0.5' opacity='0.9'>
+      <textPath href='#stampBottomArc' startOffset='50%' text-anchor='middle'>
+        Investigation Agency
+      </textPath>
+    </text>
+
+    <!-- Star in upper-right quadrant -->
+    <text x='8' y='-10' font-family='sans-serif' font-size='11' fill='#1e1e38' opacity='0.9'>★</text>
+  </g>
+
+  <!-- Blue ink cursive signature matching the attached image -->
+  <g stroke='#1d4ed8' fill='none' stroke-linecap='round' stroke-linejoin='round'>
+    <!-- Hand cursive initials & loops -->
+    <path d='M96 56 C90 44 100 32 112 38 C120 44 116 66 122 48 C126 38 132 34 136 46 C138 52 144 40 148 50 C152 54 158 42 164 52 C168 40 178 36 182 54' stroke-width='2.3'/>
+    <!-- Cross/dot flourish -->
+    <path d='M114 44 Q130 42 150 43' stroke-width='1.9'/>
+    <path d='M140 28 L144 42' stroke-width='2.2'/>
+    <!-- Underline sweep extending right into the rubber seal -->
+    <path d='M92 64 Q135 62 195 61 T230 60' stroke-width='2.2'/>
+  </g>
+
+  <!-- Authorised Signatory label under signature -->
+  <text x='148' y='82' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='10' font-weight='bold' fill='#374151'>
+    Authorised Signatory
+  </text>
 </svg>`
   ).toString('base64');
 

@@ -133,17 +133,17 @@ export const InvoicePaper: React.FC<InvoicePaperProps> = ({ invoice, id = 'invoi
             >
               {/* Company Logo or Badge */}
               <div
-                className="flex-shrink-0 w-12 h-12 border border-[#d4d4d8] rounded-full flex items-center justify-center bg-[#f4f4f5] overflow-hidden text-center text-[10px] font-bold"
+                className="flex-shrink-0 w-12 h-12 border border-[#cbd5e1] rounded-md flex items-center justify-center bg-white overflow-hidden text-center text-[10px] font-bold"
                 style={{
-                  width: '48px',
-                  height: '48px',
-                  minWidth: '48px',
-                  border: '1px solid #d4d4d8',
-                  borderRadius: '50%',
+                  width: '52px',
+                  height: '52px',
+                  minWidth: '52px',
+                  border: '1px solid #cbd5e1',
+                  borderRadius: '6px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: '#f4f4f5',
+                  backgroundColor: '#ffffff',
                   overflow: 'hidden',
                   textAlign: 'center',
                   fontSize: '10px',
@@ -1020,8 +1020,8 @@ export const InvoicePaper: React.FC<InvoicePaperProps> = ({ invoice, id = 'invoi
                     display: 'flex',
                     justifyContent: 'flex-end',
                     alignItems: 'center',
-                    minHeight: '45px',
-                    maxHeight: '55px',
+                    minHeight: '48px',
+                    maxHeight: '60px',
                     margin: '2px 0',
                   }}
                 >
@@ -1029,10 +1029,10 @@ export const InvoicePaper: React.FC<InvoicePaperProps> = ({ invoice, id = 'invoi
                   <img
                     src={invoice.signatureUrl || invoice.seller.signatureUrl}
                     alt="Authorised Signatory"
-                    className="max-h-12 max-w-[150px] object-contain"
+                    className="max-h-14 max-w-[190px] object-contain"
                     style={{
-                      maxHeight: '48px',
-                      maxWidth: '150px',
+                      maxHeight: '56px',
+                      maxWidth: '190px',
                       objectFit: 'contain',
                       display: 'block',
                     }}
