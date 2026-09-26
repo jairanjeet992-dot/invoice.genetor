@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* Print optimizations for pristine A4 invoice output */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Hide web controls when printing */
+  .no-print,
+  #invoice-paper-export-wrapper {
+    display: none !important;
+  }
+
+  /* Ensure invoice container is ALWAYS displayed when printing, even if mobileView was editor */
+  #invoice-print-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Reset any mobile zoom scale wrappers during print */
+  #invoice-print-container > div,
+  #invoice-print-container > div > div {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    position: static !important;
+  }
+
+  #invoice-paper {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: calc(297mm - 24mm) !important;
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+    transform: none !important;
+    page-break-inside: avoid !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Tax & Business Invoice Generator",
+  "description": "Create, customize, and export professional GST and tax invoices in standard tabular format with PDF export, email sending, and WhatsApp delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
